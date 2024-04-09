@@ -1,0 +1,4 @@
+pyqrcode
+climage
+fastapi
+uvicorn[standard]
