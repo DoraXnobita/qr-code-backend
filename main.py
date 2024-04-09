@@ -1,4 +1,4 @@
-from typing import Union
+import uvicorn
 from fastapi import FastAPI
 import pyqrcode 
 import random
@@ -21,7 +21,7 @@ class Item(BaseModel):
     file_save_name: str
 
 @app.post("/items")
-def qr_code_generator(item_list:Item):
+async def qr_code_generator(item_list:Item):
     print(item_list)
     link_to_generate = item_list.link_to_generate
     qr_code = pyqrcode.create(str(link_to_generate))
@@ -31,3 +31,6 @@ def qr_code_generator(item_list:Item):
     print("QR Code saved as "+file_name)
     img = Image.open(file_name)
     print(img.show())
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
