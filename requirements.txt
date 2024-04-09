@@ -2,3 +2,4 @@ pyqrcode
 climage
 fastapi
 uvicorn[standard]
+python-dotenv
